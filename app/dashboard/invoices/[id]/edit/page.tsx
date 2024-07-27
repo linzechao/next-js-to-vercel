@@ -4,6 +4,7 @@ import {
     fetchInvoiceById,
     fetchCustomers,
 } from '@/app/lib/data';
+import { notFound } from 'next/navigation';
 
 export default async function Page({
     params
@@ -17,6 +18,11 @@ export default async function Page({
         fetchInvoiceById(id),
         fetchCustomers(),
     ]);
+
+    console.log(invoice)
+    if (!invoice) {
+        notFound()
+    }
 
     return (
         <main>
